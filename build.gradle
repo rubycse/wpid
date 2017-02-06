@@ -1,0 +1,51 @@
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: "jetty"
+apply plugin: "idea"
+
+ext.springVersion='4.2.5.RELEASE'
+ext.hibernateVersion='4.3.11.Final'
+ext.hibernateValidatorVersion='5.2.2.Final'
+ext.springDataVersion='1.9.2.RELEASE'
+ext.mySqlConnectorJavaVersion='5.1.38'
+ext.jtaVersion='1.1'
+
+dependencies {
+    compile 'javax:javaee-api:7.0'
+    compile "javax.transaction:jta:$jtaVersion"
+    compile "org.springframework:spring-webmvc:$springVersion"
+    compile "org.springframework:spring-tx:$springVersion"
+    compile "org.springframework:spring-orm:$springVersion"
+    compile "org.springframework:spring-context-support:$springVersion"
+
+    // hibernate
+    compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+    compile "org.hibernate:hibernate-core:$hibernateVersion"
+    compile "org.hibernate:hibernate-validator:$hibernateValidatorVersion"
+    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
+
+    // mysql db
+    compile 'mysql:mysql-connector-java:5.1.38'
+
+    compile 'opensymphony:sitemesh:2.4.2'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.3'
+
+    compile 'jstl:jstl:1.2'
+}
+
+war {
+    baseName = 'wpid'
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+httpPort = 8090
+stopPort = 9090
+stopKey = "stopKey"
+

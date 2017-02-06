@@ -1,0 +1,33 @@
+.read-only {
+    padding-top: 13px; min-height: 33px; font-weight: normal;
+}
+
+.subtitle {
+    margin: 30px 0 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #93C54B;
+}
+
+.buttons {
+    background-color: #DFD7CA;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.left-buttons {
+    padding-left: 20px;
+}
+
+.right-buttons {
+    padding-right: 20px;
+}
+
+.btn {
+    text-transform: none;
+}
+
+.footer {
+    padding: 20px 0 20px;
+    background-color: #ebebeb;
+    text-align: center;
+}
