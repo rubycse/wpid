@@ -5,6 +5,10 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
            version="3.0">
 
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext.*</param-value>
+    </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -15,9 +19,43 @@
         <filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
     </filter>
 
+    <filter>
+        <filter-name>authFilter</filter-name>
+        <filter-class>net.wpid.auth.filter.AuthenticationFilter</filter-class>
+        <init-param>
+            <param-name>exclude-url-patterns</param-name>
+            <param-value>/auth/signin,/auth/signup,/auth/verify-email</param-value>
+        </init-param>
+    </filter>
+
     <filter-mapping>
         <filter-name>sitemesh</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>authFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>quiz</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>quiz</servlet-name>
+        <url-pattern>/quiz/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>auth</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>auth</servlet-name>
+        <url-pattern>/auth/*</url-pattern>
+    </servlet-mapping>
 
 </web-app>
