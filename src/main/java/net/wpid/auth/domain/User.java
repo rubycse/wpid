@@ -14,7 +14,7 @@ public class User {
 
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
 
     private String username;
 
@@ -39,17 +39,11 @@ public class User {
 
     private String phone;
 
-    private String emailVerificationId;
-
-    private boolean emailVerified;
-
-    private boolean student;
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -123,30 +117,6 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getEmailVerificationId() {
-        return emailVerificationId;
-    }
-
-    public void setEmailVerificationId(String emailVerificationId) {
-        this.emailVerificationId = emailVerificationId;
-    }
-
-    public boolean isEmailVerified() {
-        return emailVerified;
-    }
-
-    public void setEmailVerified(boolean emailVerified) {
-        this.emailVerified = emailVerified;
-    }
-
-    public boolean isStudent() {
-        return student;
-    }
-
-    public void setStudent(boolean student) {
-        this.student = student;
     }
 
     public String getName() {

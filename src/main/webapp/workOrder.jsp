@@ -6,9 +6,7 @@
         ADP Allocation Detail
     </title>
     <style type="text/css">
-        .read-only {
-            padding-top: 13px; min-height: 33px; font-weight: normal;
-        }
+
     </style>
 </head>
 <body>

@@ -2,10 +2,7 @@ package net.wpid.main.domain;
 
 import net.wpid.auth.domain.User;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author lutfun
@@ -24,6 +21,8 @@ public class Project {
 
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "created_by_id")
     private User createdBy;
 
     public long getId() {

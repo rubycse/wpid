@@ -35,19 +35,17 @@ public class SigninController {
     }
 
     @RequestMapping(path = "/signin", method = RequestMethod.POST)
-    public String signin(@ModelAttribute Credential credential, BindingResult result, ModelMap model, HttpServletRequest request) {
+    public String signin(@ModelAttribute Credential credential, BindingResult result, HttpServletRequest request) {
         User user = userDao.getAuthenticUser(credential);
         if (user == null) {
             result.reject("", "Invalid Username/Password");
             return "signin";
-        } else if (!user.isEmailVerified()) {
-            model.put("email", user.getEmail());
-            return "verifyEmail";
         }
+
         HttpSession session = request.getSession(true);
         session.setAttribute("USER", user);
 
-        return "redirect:/quiz/list";
+        return "redirect:/main/home";
     }
 
     @RequestMapping(path = "/signout", method = RequestMethod.GET)
@@ -58,6 +56,6 @@ public class SigninController {
 
     @InitBinder
     public void initBinder(WebDataBinder binder, HttpServletRequest request) {
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("MM/DD/YYYY"), false));
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("DD/MM/YYYY"), false));
     }
 }

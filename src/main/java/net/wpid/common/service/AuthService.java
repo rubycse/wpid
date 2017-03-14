@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 @Service
 public class AuthService {
 
-    public User getUser() {
+    public User getCurrentUser() {
         HttpSession session = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
                 .getRequest().getSession();
         return (User) session.getAttribute("USER");

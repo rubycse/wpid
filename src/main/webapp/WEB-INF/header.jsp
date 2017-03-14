@@ -15,13 +15,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <c:if test="${sessionScope.USER != null}">
-                    <li><a href="<c:url value='/quiz/list'/>">Public</a></li>
-                    <c:if test="${sessionScope.USER.student}">
-                        <li><a href="<c:url value='/quiz/list?sharedWithMe=true'/>">Shared With Me</a></li>
-                    </c:if>
-                    <c:if test="${!sessionScope.USER.student}">
-                        <li><a href="<c:url value='/quiz/myQuizzes'/>">My Quizzes</a></li>
-                    </c:if>
+                    <li><a href="<c:url value='/main/project/list'/>">Projects</a></li>
                 </c:if>
             </ul>
             <form class="navbar-form navbar-left" role="search">
@@ -36,32 +30,20 @@
                         <li><a href="<c:url value='/auth/signin'/>">Sign In</a></li>
                         <li><a href="<c:url value='/auth/signup'/>">Sign Up</a></li>
                     </c:when>
-                    <c:when test="${sessionScope.USER.student}">
+                    <c:otherwise>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="<c:url value='/main/project/show'/>">Create Project</a></li>
+                                <li class="divider"></li>
                                 <li><a href="<c:url value='/auth/myProfile'/>">My Profile</a></li>
                                 <li><a href="<c:url value='/auth/changePassword'/>">Change Password</a></li>
-                                <li><a href="<c:url value='/quiz/settings'/>">Settings</a></li>
+                                <li><a href="<c:url value='/main/settings'/>">Settings</a></li>
                                 <li class="divider"></li>
                                 <li><a href="<c:url value='/auth/signout'/>">Sign Out</a></li>
                             </ul>
                         </li>
-                    </c:when>
-                    <c:when test="${!sessionScope.USER.student}">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="<c:url value='/quiz/create'/>">Create Quiz</a></li>
-                                <li class="divider"></li>
-                                <li><a href="<c:url value='/auth/myProfile'/>">My Profile</a></li>
-                                <li><a href="<c:url value='/auth/changePassword'/>">Change Password</a></li>
-                                <li><a href="<c:url value='/quiz/settings'/>">Settings</a></li>
-                                <li class="divider"></li>
-                                <li><a href="<c:url value='/auth/signout'/>">Sign Out</a></li>
-                            </ul>
-                        </li>
-                    </c:when>
+                    </c:otherwise>
                 </c:choose>
 
             </ul>

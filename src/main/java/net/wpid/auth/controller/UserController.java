@@ -23,7 +23,7 @@ import java.util.UUID;
  * @since 5/13/16
  */
 @Controller
-public class SignupController {
+public class UserController {
 
     @Autowired
     private UserDao userDao;
@@ -31,7 +31,7 @@ public class SignupController {
     @Autowired
     private MailService mailService;
 
-    @RequestMapping(path = "/signup", method = RequestMethod.GET)
+    @RequestMapping(path = "/show", method = RequestMethod.GET)
     public String signup(@ModelAttribute User user) {
         return "signup";
     }
@@ -42,11 +42,7 @@ public class SignupController {
             return "signup";
         }
 
-        String uuid = UUID.randomUUID().toString();
-        user.setEmailVerificationId(uuid);
-        user.setEmailVerified(false);
         userDao.save(user);
-        sendEmail(user, uuid);
         model.put("email", user.getEmail());
 
         return "verifyEmail";
