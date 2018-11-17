@@ -3,10 +3,19 @@ repositories {
     mavenCentral()
 }
 
-apply plugin: 'java'
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.akhikhl.gretty:gretty:1.4.0'
+    }
+}
+
 apply plugin: 'war'
-apply plugin: "jetty"
 apply plugin: "idea"
+apply plugin: 'org.akhikhl.gretty'
 
 ext.springVersion='4.2.5.RELEASE'
 ext.hibernateVersion='4.3.11.Final'
@@ -45,7 +54,9 @@ war {
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-httpPort = 8090
-stopPort = 9090
-stopKey = "stopKey"
+gretty {
+    port = 8090
+    servletContainer = 'tomcat8'
+    managedClassReload = true
+}
 
